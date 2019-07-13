@@ -25,7 +25,7 @@ import socket
 import struct
 import logging
 
-
+# 这部分写的是如何将网址转为ip地址  name to packed
 def inet_ntop(family, ipstr):
     if family == socket.AF_INET:
         return socket.inet_ntoa(ipstr)
@@ -34,7 +34,7 @@ def inet_ntop(family, ipstr):
                           for i, j in zip(ipstr[::2], ipstr[1::2]))
         return v6addr
 
-
+# 这部分写的是如何将ip地址转换为网址 packed to name
 def inet_pton(family, addr):
     if family == socket.AF_INET:
         return socket.inet_aton(addr)
