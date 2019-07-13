@@ -155,6 +155,9 @@ class SelectLoop(object):
 class EventLoop(object):
     def __init__(self):
         self._iterating = False
+        # 为EventLoop类提供统一的_imp接口。
+        # 不同操作系统的事件循环机制不同，比如mac使用kqueue，ubuntu使用epoll，windows使用select。
+        # 在外部可以忽略这些细节，直接使用_imp方法就可以了。
         if hasattr(select, 'epoll'):
             self._impl = EpollLoop()
             model = 'epoll'
